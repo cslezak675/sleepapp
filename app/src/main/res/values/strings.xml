@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Sleep App</string>
+    <string name="total_hours_of_last_sleep_period">Total Hours of Last Sleep Period</string>
+    <string name="_5_hours"><![CDATA[< 5 Hours]]></string>
+    <string name="_6_hours">6 Hours</string>
+    <string name="_7_hours">7 Hours</string>
+    <string name="_8_hours">8+ Hours</string>
+    <string name="next_scheduled_event_time">Next Scheduled Event Time</string>
+    <string name="ex_1900">ex) 1900 hours</string>
+    <string name="medication_and_or_sleep_aids">Medication and/or Sleep Aids?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="please_enter_any_medications">Please Enter Any Medications</string>
+    <string name="done">Done</string>
+    <string name="type_of_activity">Type of Activity</string>
+    <string name="ex_aerobic">ex) Aerobic</string>
+    <string name="duration">Duration</string>
+    <string name="ex_120_minutes">ex) 120 minutes</string>
+    <string name="body_weight">Body Weight</string>
+    <string name="ex_150_lbs">ex) 150 lbs</string>
+    <string name="next">Next</string>
+    <string name="will_you_be_flying">Will You be Flying?</string>
+    <string name="flight_number">Flight Number?</string>
+    <string name="from_which_airport">From Which Airport?</string>
+    <string name="ex_1">ex) 1</string>
+    <string name="ex_ord">ex) ORD</string>
+    <string name="food_and_or_drink_consumed">Food and/or Drink Consumed</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="are_you_sleepy_drowsy">Are You Sleepy/Drowsy?</string>
+    <string-array name="exercise_array">
+        <item>Aerobic</item>
+        <item>Strength</item>
+    </string-array>
+</resources>
