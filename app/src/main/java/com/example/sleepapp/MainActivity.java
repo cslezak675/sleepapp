@@ -1,5 +1,6 @@
 package com.example.sleepapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -14,8 +15,11 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,11 +30,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
     public static LocalTime next_event_time;
+    public static int selected_year;
+    public static int selected_month;
+    public static int selected_day;
     public static int sleepTime;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -38,34 +49,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView nextEvent = (TextView) findViewById(R.id.editTextTime);
-        final TextView seeNextEvent = (TextView) findViewById(R.id.next_event_id);
         Button sleepSix = (Button) findViewById(R.id.button2);
         Button sleepSeven = (Button) findViewById(R.id.button3);
         Button sleepEight = (Button) findViewById(R.id.button4);
-        nextEvent.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String totalTime = v.getText().toString();
-                if (totalTime.length() == 3){
-                    totalTime = "0"+totalTime.substring(0,1)+":"+totalTime.substring(1);
-                } else if (totalTime.length() == 4){
-                    totalTime = totalTime.substring(0,2)+":"+totalTime.substring(2);
-                }
-                if (Integer.parseInt(totalTime.substring(0,2)) > 23 || Integer.parseInt(totalTime.substring(3)) > 59){
-                    totalTime = "00:00";
-                }
-                if (totalTime.contains(":")){
-                    next_event_time = LocalTime.parse(totalTime);
-                }
-                seeNextEvent.setText("The next event is at " + next_event_time.toString());
-
-                return true;
-            }
-        }
-        );
-
         Button sleepFive = (Button) findViewById(R.id.button);
+        Button timeNext = (Button) findViewById(R.id.event_next);
+        final TextView timeEntry = (TextView) findViewById(R.id.event_time);
+        final CalendarView calendar = (CalendarView) findViewById(R.id.event_date);
+
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                selected_year = year;
+                selected_day = dayOfMonth;
+                selected_month = month;
+            }
+        });
+        timeNext.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v) {
+                if(calendar.getVisibility() == View.VISIBLE){
+                    calendar.setVisibility(View.INVISIBLE);
+                    timeEntry.setVisibility(View.VISIBLE);
+                } else{
+                    String time = timeEntry.getText().toString();
+                    if(time.length() == 3 && Integer.parseInt(time.substring(1)) <= 59){
+                        time = time.substring(0,1)+":"+time.substring(1);
+                    }
+                    calendar.setVisibility(View.VISIBLE);
+                    timeEntry.setVisibility(View.INVISIBLE);
+                }
+
+            }
+        });
         sleepFive.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View view){
                 sleepTime = 5;

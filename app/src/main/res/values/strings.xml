@@ -5,7 +5,7 @@
     <string name="_6_hours">6 Hours</string>
     <string name="_7_hours">7 Hours</string>
     <string name="_8_hours">8+ Hours</string>
-    <string name="next_scheduled_event_time">Next Scheduled Event Time</string>
+    <string name="next_scheduled_event_time">Schedule a New Event (Launch, Docking, Etc)</string>
     <string name="ex_1900">ex) 1900 hours</string>
     <string name="medication_and_or_sleep_aids">Medication and/or Sleep Aids?</string>
     <string name="yes">Yes</string>
